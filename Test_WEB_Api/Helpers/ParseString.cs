@@ -26,30 +26,30 @@ namespace Test_WEB_Api.Helpers
                 _file = _file.Remove(0, IndexPoint);
                 _file = _file.TrimStart(new char[] { ' ', '.' });
             }
-            return ReverseString(list, SearchWord);
+            return CountWords(list, SearchWord);
         }
 
-        static public List<Sentence> ReverseString(List<string> list, string SearchWord)
+        static public List<Sentence> CountWords(List<string> list, string SearchWord)
         {
             int IndexPoint;
             int counter;
           
             List<Sentence> array = new List<Sentence>(); 
-            foreach (string t in list)
+            foreach (string element in list)
             {
                 string buff;
                 counter = 0;
                 IndexPoint = 0;
                 for (;;)
                 {
-                    if ((IndexPoint = t.IndexOf(SearchWord, IndexPoint, StringComparison.CurrentCultureIgnoreCase)) >= 0)
+                    if ((IndexPoint = element.IndexOf(SearchWord, IndexPoint, StringComparison.CurrentCultureIgnoreCase)) >= 0)
                     {
                         counter++;
                         IndexPoint++;
                     }
                     else break;
                 }
-                buff = Reverse(t);
+                buff = Reverse(element);
 
                 array.Add(new Sentence { Body = buff, Counter = counter });
             }
