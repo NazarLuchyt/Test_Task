@@ -9,52 +9,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Test Task</title>
-    <style>
-        p{
-            font-size: 20px;
-            line-height: 0%;
-        }
-        header{
-            font-family: "Times New Roman";
-        }
-        .row{
-            text-align: center;
-            font-size: large;
-        }
-        .button1{
-            font-size: 28px;
-        }
-          
-        table {
-            border: 2px solid #ccc;  /* граница всей таблицы */
-        }
-          
-        tr {
-            border: 1px solid #ccc;  /* границы между строками */
-        }
-          
-        td, th {
-            border: 1px solid #ccc;  /* границы между столбцами */
-        }
-        .collapsed {
-            border-collapse: collapse;
-          
-        }
-                    
-        .tbl{
-            width: auto;
-            height: 500px; 
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            overflow: scroll;
-            margin-left: 10px;
-        }
-        h3{
-            text-align: center;
-        }
-    </style>
-     
+    <link rel="stylesheet" type="text/css" href="~/Content/MyStyle.css" />
 </head>
 
 <body>
@@ -67,8 +22,7 @@
             <label for="Search">Enter word for parsing file: </label>
             <input type="text" name="SearchWord" required placeholder="Enter word"/>
             <br />
-            
-                <input class="button1" type="submit" value="Search and parsing" />
+            <input class="button1" type="submit" value="Search and parsing" />
            
        }
     </div>
@@ -96,9 +50,5 @@
             </table>
         </div>
 
-
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>

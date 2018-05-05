@@ -1,0 +1,43 @@
+﻿  p{
+            font-size: 20px;
+            line-height: 0%;
+        }
+        header{
+            font-family: "Times New Roman";
+        }
+        .row{
+            text-align: center;
+            font-size: large;
+        }
+        .button1{
+            font-size: 28px;
+        }
+          
+        table {
+            border: 2px solid #ccc;  /* граница всей таблицы */
+        }
+          
+        tr {
+            border: 1px solid #ccc;  /* границы между строками */
+        }
+          
+        td, th {
+            border: 1px solid #ccc;  /* границы между столбцами */
+        }
+        .collapsed {
+            border-collapse: collapse;
+          
+        }
+                    
+        .tbl{
+            width: auto;
+            height: 500px; 
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow: scroll;
+            margin-left: 10px;
+        }
+        h3{
+            text-align: center;
+        }
