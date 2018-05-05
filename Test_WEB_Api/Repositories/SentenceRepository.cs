@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using Test_WEB_Api.Interfaces;
 using Test_WEB_Api.Models;
 
 namespace Test_WEB_Api.Repositories
 {
-    public class SentenceRepository : IRepository<Sentence>
+    public class SentenceRepository
     {
         private SentenceContext db;
 
@@ -22,32 +21,26 @@ namespace Test_WEB_Api.Repositories
         {
             return db.Sentences;
         }
- 
-        //public Sentence Get(int id)
-        //{
-        //    return db.Sentences.Find(id);
-        //}
- 
-        public void Create(Sentence sentence)
+        public int GetID()
         {
-            db.Sentences.Add(sentence);
+            int count = GetAll().Count();
+            return count;
+        }
+        public void Create(List<Sentence> Array)
+        {
+            foreach(Sentence element in Array)
+            db.Sentences.Add(element);
+            Save();
         }
  
         public void Update(Sentence sentence)
         {
             db.Entry(sentence).State = EntityState.Modified;
         }
- 
-        //public IEnumerable<Phone> Find(Func<Phone, Boolean> predicate)
-        //{
-        //    return db.Phones.Where(predicate).ToList();
-        //}
- 
-        //public void Delete(int id)
-        //{
-        //    Phone book = db.Phones.Find(id);
-        //    if (book != null)
-        //        db.Phones.Remove(book);
-        //}
+        public void Save()
+        {
+            db.SaveChanges();
+        }
+
     }
 }
