@@ -161,8 +161,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ParseString.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Models\Initializator.cs" />
     <Compile Include="Models\Sentence.cs" />
     <Compile Include="Models\SentenceContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

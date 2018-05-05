@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Test_WEB_Api.Models;
 
 namespace Test_WEB_Api.Repositories
@@ -21,11 +17,7 @@ namespace Test_WEB_Api.Repositories
         {
             return db.Sentences;
         }
-        public int GetID()
-        {
-            int count = GetAll().Count();
-            return count;
-        }
+        
         public void Create(List<Sentence> Array)
         {
             foreach(Sentence element in Array)
@@ -33,10 +25,6 @@ namespace Test_WEB_Api.Repositories
             Save();
         }
  
-        public void Update(Sentence sentence)
-        {
-            db.Entry(sentence).State = EntityState.Modified;
-        }
         public void Save()
         {
             db.SaveChanges();

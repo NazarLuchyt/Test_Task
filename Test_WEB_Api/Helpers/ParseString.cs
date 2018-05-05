@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using Test_WEB_Api.Models;
 using System.IO;
-using System.Text;
-using Test_WEB_Api.Repositories;
 
 namespace Test_WEB_Api.Helpers
 {
-   static public class ParseString
+   static public class ParseString_Helper
     {
-        static public List<Sentence> Parse(HttpPostedFileBase file, string SearchWord, int NextID)
+        static public List<Sentence> Parse(HttpPostedFileBase file, string SearchWord)
         {
-          //  string result1 = new StreamReader(File.InputStream).ReadToEnd(); // ще один спосіб зчитування
-
             BinaryReader b = new BinaryReader(file.InputStream);
             byte[] binData = b.ReadBytes(file.ContentLength);
             List<string> list = new List<string>();
@@ -33,14 +26,14 @@ namespace Test_WEB_Api.Helpers
                 _file = _file.Remove(0, IndexPoint);
                 _file = _file.TrimStart(new char[] { ' ', '.' });
             }
-            return ReverseString(list, SearchWord, NextID);
+            return ReverseString(list, SearchWord);
         }
 
-        static public List<Sentence> ReverseString(List<string> list, string SearchWord, int NextID)
+        static public List<Sentence> ReverseString(List<string> list, string SearchWord)
         {
             int IndexPoint;
             int counter;
-            int _ID = NextID;
+          
             List<Sentence> array = new List<Sentence>(); 
             foreach (string t in list)
             {
@@ -58,7 +51,7 @@ namespace Test_WEB_Api.Helpers
                 }
                 buff = Reverse(t);
 
-                array.Add(new Sentence { ID = ++_ID, Body = buff, Counter = counter });
+                array.Add(new Sentence { Body = buff, Counter = counter });
             }
             return array;
            

@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Test_WEB_Api.Models;
-using System.IO;
-using System.Text;
 using Test_WEB_Api.Repositories;
 using Test_WEB_Api.Helpers;
 
@@ -33,8 +29,7 @@ namespace Test_WEB_Api.Controllers
         {
             if (file != null)
             {
-                int k = db.GetID();
-               db.Create(ParseString.Parse(file, SearchWord,k));
+               db.Create(ParseString_Helper.Parse(file, SearchWord));
             }
             return RedirectToAction("Index");
         }
