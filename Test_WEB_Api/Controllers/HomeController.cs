@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using Test_WEB_Api.Models;
 using System.IO;
+using System.Text;
+
 namespace Test_WEB_Api.Controllers
 {
     public class HomeController : Controller
@@ -38,7 +40,7 @@ namespace Test_WEB_Api.Controllers
                 while ((IndexPoint = f.IndexOf('.')) >= 0)
                 {
 
-                    if ((AddToData = f.Substring(0, IndexPoint)).IndexOf("Hello", StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    if ((AddToData = f.Substring(0, IndexPoint)).IndexOf(SearchWord, StringComparison.CurrentCultureIgnoreCase) >= 0)
                     {
                         list.Add(AddToData);
                         f = f.Remove(0, IndexPoint);
@@ -51,21 +53,40 @@ namespace Test_WEB_Api.Controllers
                     }
                 }
                 Sentence sent = new Sentence();
-                foreach(var t in list)
+                int counter,rangeString;
+               
+                foreach(string t in list)
                 {
-                    //sent.ID = ++ind;
-                    //sent.Body = t.ToString();
-                    db.Sentences.Add(new Sentence { ID = ++ind, Body = t.ToString() });
-                 //   db.SaveChanges();
+                    //   StringBuilder buff = new StringBuilder(t.Length);
+                    string buff;
+                    counter = 0;
+                    IndexPoint = 0;
+                    for (;;)
+                    {
+                        if ((IndexPoint = t.IndexOf(SearchWord, IndexPoint, StringComparison.CurrentCultureIgnoreCase)) >= 0)
+                        {
+                            counter++;
+                            IndexPoint++;
+                        }
+                        else break;
+                    }
+                    buff = Reverse(t);
+                    db.Sentences.Add(new Sentence { ID = ++ind, Body = buff, Counter = counter });
                 }
-
                 db.SaveChanges();
 
 
             }
             return RedirectToAction("Index");
         }
-        
+
+        public static string Reverse(string s)
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
+        }
+
 
     }
 }
