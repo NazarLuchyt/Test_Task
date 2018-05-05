@@ -1,0 +1,102 @@
+﻿@{
+    Layout = null;
+   
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test Task</title>
+    <style>
+        p{
+            font-size: 20px;
+              line-height: 0%;
+            }
+        header{
+            font-family: "Times New Roman";
+        }
+        .row{
+             text-align: center;
+             font-size: large;
+        }
+        .button1{
+            font-size: 28px;
+        }
+          
+        table {
+            border: 2px solid #ccc;  /* граница всей таблицы */
+                }
+          
+        tr {
+                 border: 1px solid #ccc;  /* границы между строками */
+                }
+          
+        td, th {
+              border: 1px solid #ccc;  /* границы между столбцами */
+                }
+        .collapsed {
+            border-collapse: collapse;
+          
+        }
+                    
+        .tbl{
+           width: auto;
+           height: 500px; 
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow: scroll;
+            margin-left: 10px;
+        }
+        h3{
+              text-align: center;
+        }
+    </style>
+     
+</head>
+
+<body>
+    <div class="row">
+       @using (Html.BeginForm("FindAndAdd", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+       {
+            <label for="File">Choose file: </label>
+            <input type="file" name="File" required/>
+            <br />
+            <label for="Search">Enter word for parsing file: </label>
+            <input type="text" name="SearchWord" required placeholder="Enter word"/>
+            <br />
+            
+                <input class="button1" type="submit" value="Search and parsing" />
+           
+       }
+    </div>
+    <br />
+   
+        
+        <h3>Database of earlier found sentences</h3>
+        <div class="tbl">
+            <table class="collapsed">
+                <tr>
+                    <td><b><p>ID</p></b></td>
+                    <td><b><p>Sentence</p></b></td>
+                </tr>
+                @foreach (var s in ViewBag._Sentences)
+                {
+
+                    <tr>
+                        <td><p>@s.ID</p></td>
+                        <td><p>@s.Body</p></td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
