@@ -7,18 +7,26 @@ using System.Web.Mvc;
 using Test_WEB_Api.Models;
 using System.IO;
 using System.Text;
+using Test_WEB_Api.Interfaces;
+using Test_WEB_Api.Repositories;
 
 namespace Test_WEB_Api.Controllers
 {
     public class HomeController : Controller
     {
-        SentenceContext db = new SentenceContext();
-        static int ind;
+        IRepository<Sentence> db;
+        //SentenceContext db = new SentenceContext();
+        public HomeController()
+        {
+            db = new SentenceRepository();
+        }
+
         public ActionResult Index()
         {
-            IEnumerable<Sentence> sentences = db.Sentences;
-            ind = sentences.Count();
-            ViewBag._Sentences = sentences;
+            
+            //IEnumerable<Sentence> sentences = db.Sentences;
+            
+            ViewBag._Sentences = db.GetAll();
             
             return View();
         }
@@ -30,7 +38,7 @@ namespace Test_WEB_Api.Controllers
             {
                
            //    string result1 = new StreamReader(File.InputStream).ReadToEnd(); // ще один спосіб зчитування
-
+           /*
                BinaryReader b = new BinaryReader(File.InputStream);
                byte[] binData = b.ReadBytes(File.ContentLength);
                ArrayList list = new ArrayList();
@@ -74,7 +82,7 @@ namespace Test_WEB_Api.Controllers
                     db.Sentences.Add(new Sentence { ID = ++ind, Body = buff, Counter = counter });
                 }
                 db.SaveChanges();
-
+                */
 
             }
             return RedirectToAction("Index");
