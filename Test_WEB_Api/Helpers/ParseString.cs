@@ -40,14 +40,10 @@ namespace Test_WEB_Api.Helpers
                 string buff;
                 counter = 0;
                 IndexPoint = 0;
-                for (;;)
+                while((IndexPoint = element.IndexOf(SearchWord, IndexPoint, StringComparison.CurrentCultureIgnoreCase)) >= 0)
                 {
-                    if ((IndexPoint = element.IndexOf(SearchWord, IndexPoint, StringComparison.CurrentCultureIgnoreCase)) >= 0)
-                    {
-                        counter++;
-                        IndexPoint++;
-                    }
-                    else break;
+                    counter++;
+                    IndexPoint++;
                 }
                 buff = Reverse(element);
 
